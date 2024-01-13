@@ -7,21 +7,32 @@ const Calculator = () => {
   const [error, setError] = useState(null);
 
   const validInput = () => {
-    if (num1 === "" || isNaN(num1)) {
+    if (num1 === "" ) {
       setError("Num1 cannot be empty");
       return false;
+      
     }
 
+        if (isNaN(num1)) {
+          setError("Enter a Valid Number");
+          return false;
+        }
+ 
     
-    
-    if (num2 === "" || isNaN(num2)) {
+    if (num2 === "" ) {
       setError("Num2 cannot be empty");
       return false;
     }
+
+        if (isNaN(num2)) {
+          setError("Enter a Valid Number");
+          return false;
+        }
   
     setError(null);
     return true;
   };
+  
 
 
 
@@ -30,6 +41,7 @@ const Calculator = () => {
       setResult(parseFloat(num1) + parseFloat(num2));
       setNum1("");
       setNum2("");
+      
     }
   };
 
@@ -67,13 +79,18 @@ const Calculator = () => {
           type="text"
           placeholder="Num 1"
           value={num1}
-          onChange={(e) => setNum1(e.target.value)}
+          onChange={(e) =>{ setNum1(e.target.value)
+            setResult(null);
+        }}
+          
         ></input>
         <input
           type="text"
           placeholder="Num 2"
           value={num2}
-          onChange={(e) => setNum2(e.target.value)}
+          onChange={(e) => {setNum2(e.target.value)
+            setResult(null);
+        }}
         ></input>
 
         <div className="buttons-div">
